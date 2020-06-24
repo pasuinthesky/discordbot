@@ -44,6 +44,8 @@ async def on_message(message):
         sub = 'say hi to '
         p = re.sub(r'\W+', '',
                    s[(len(s) - s.find(sub) - len(sub)) * -1:].split()[0])
+        if p == 'me':
+            p = message.author.nick
         await message.channel.send(f'Hi, {p}. How are you? 🎈🎉')
 
     if 'good night to everyone' in s:
