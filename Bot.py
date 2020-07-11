@@ -57,5 +57,12 @@ async def on_message(message):
                     f'Good night, {u.name if u.nick is None else u.nick}. :sleeping:\n'
                 )
 
+    if 'help' == s[4:].strip():
+        await message.channel.send(f'Yup, my lord. I can do following:\n'
+                                   f'- happy birthday\n'
+                                   f'- say hi to <name or user>\n'
+                                   f'- good night to everyone\n'
+                                   f'- help\n')
+
 
 client.run(TOKEN)
