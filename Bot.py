@@ -37,8 +37,11 @@ async def on_message(message):
     if not s.startswith('bot,'):
         return
 
-    if 'happy birthday' in s:
-        await message.channel.send('Happy Birthday! 🎈🎉')
+    if 'happy birthday ' in s:
+        sub = 'happy birthday '
+        p = re.sub(r'\W+', '',
+                   s[(len(s) - s.find(sub) - len(sub)) * -1:].split()[0])
+        await message.channel.send('Happy Birthday, {p}! 🎈🎉')
 
     if 'say hi to ' in s:
         sub = 'say hi to '
@@ -59,7 +62,7 @@ async def on_message(message):
 
     if 'help' == s[4:].strip():
         await message.channel.send(f'Yup, my lord. I can do following:\n'
-                                   f'- happy birthday\n'
+                                   f'- happy birthday <name or user>\n'
                                    f'- say hi to <name or user>\n'
                                    f'- good night to everyone\n'
                                    f'- help\n')
